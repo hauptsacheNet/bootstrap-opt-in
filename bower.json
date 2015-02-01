@@ -1,8 +1,8 @@
 {
-  "name": "bootstra-opt-in",
+  "name": "opt-in",
   "main": "opt-in.js",
-  "version": "1.0.0",
-  "description": "Automatically opt-in to tooltips and popovers",
+  "version": "0.0.0",
+  "description": "Automatically opt-in to common libraries",
   "keywords": [
     "bootstrap"
   ],
