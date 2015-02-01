@@ -1,0 +1,25 @@
+{
+  "name": "bootstra-opt-in",
+  "main": "opt-in.js",
+  "version": "1.0.0",
+  "description": "Automatically opt-in to tooltips and popovers",
+  "keywords": [
+    "bootstrap"
+  ],
+  "authors": [
+    "Marco Pfeiffer <marco@hauptsache.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1",
+    "bootstrap": "~3.2"
+  }
+}
