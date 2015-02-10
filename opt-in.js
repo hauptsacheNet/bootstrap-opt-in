@@ -3,38 +3,39 @@
 
     var $document = $(document);
 
+    // https://code.google.com/p/hyphenator/
+    if (typeof Hyphenator_Loader !== 'undefined' || typeof Hyphenator !== 'undefined') {
+        var $html = $('html');
+
+        var langs = {};
+        $('[lang]').attr('lang', function (index, lang) {
+            // FIXME find a way to get the word required
+            langs[lang] = "donaudampfschifffahrtselektrizitätenhauptbetriebswerkbauunterbeamtengesellschaft";
+        });
+
+        var config = {};
+        $.each($html.data(), function (key, value) {
+            if (key.match(/^hyphenator/) && key !== 'hyphenatorPath') {
+                config[key.substr(10).toLowerCase()] = value;
+            }
+        });
+
+        if (typeof Hyphenator_Loader !== 'undefined') {
+            var path = $html.data('hyphenator-path');
+            if (!path) {
+                alert('data-hyphenator-path not specified')
+            }
+            Hyphenator_Loader.init(langs, path, config);
+        } else if (typeof Hyphenator !== 'undefined') {
+            Hyphenator.config(config);
+            Hyphenator.run();
+        }
+    }
+
     $document.on('ready', function (e) {
         // https://github.com/ftlabs/fastclick
         if (typeof FastClick !== 'undefined') {
             FastClick.attach(document.body);
-        }
-        // https://code.google.com/p/hyphenator/
-        if (typeof Hyphenator_Loader !== 'undefined' || typeof Hyphenator !== 'undefined') {
-            var $html = $('html');
-
-            var langs = {};
-            $('[lang]').attr('lang', function (index, lang) {
-                // FIXME find a way to get the word required
-                langs[lang] = "donaudampfschifffahrtselektrizitätenhauptbetriebswerkbauunterbeamtengesellschaft";
-            });
-
-            var config = {};
-            $.each($html.data(), function (key, value) {
-                if (key.match(/^hyphenator/) && key !== 'hyphenatorPath') {
-                    config[key.substr(10).toLowerCase()] = value;
-                }
-            });
-
-            if (typeof Hyphenator_Loader !== 'undefined') {
-                var path = $html.data('hyphenator-path');
-                if (!path) {
-                    alert('data-hyphenator-path not specified')
-                }
-                Hyphenator_Loader.init(langs, path, config);
-            } else if (typeof Hyphenator !== 'undefined') {
-                Hyphenator.config(config);
-                Hyphenator.run();
-            }
         }
     });
 
